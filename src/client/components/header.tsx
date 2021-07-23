@@ -8,7 +8,7 @@ export const Header: React.VFC<{}> = () => (
   <header className="flex">
     <div className="desc w-full my-6 space-y-1">
       <Link route={routes.exactRoute} className="hover:text-gray-300 text-xl">
-        anony
+        anyboard
       </Link>
       <Link route={routes._.posts} className="hover:text-gray-300">
         <div className="flex items-center justify-start my-1">投稿一覧</div>
