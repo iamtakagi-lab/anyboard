@@ -16,6 +16,7 @@ export const PostCreateButton: React.VFC<{}> = () => {
             text: text
         }).then((res) => {
             setText("")
+            location.reload()
             if (res.success) {
                 toasts.addToast("投稿しました", {
                     appearance: "success",
