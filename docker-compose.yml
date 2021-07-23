@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: web
+    build: .
+    env_file: ./config/web.env
+    restart: always
+    ports:
+      - 3000:3000
+    links:
+      - db
+
+  db:
+    container_name: db
+    image: postgres
+    env_file:
+      - ./config/db.env
+    restart: always
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres-data:
+    driver: local

@@ -1,0 +1,23 @@
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Anonymity {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  address   String
+  userAgents String[]
+}
+
+model Post {
+  id       Int      @id @default(autoincrement())
+  postedAt DateTime @default(now())
+  text  String
+  authorId Int
+  replyTo Int?
+}
