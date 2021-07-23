@@ -1,7 +1,6 @@
-import { Context } from "koa"
 import { postsRepo } from "../constants"
 
-export default async (ctx: Context) => {
+export default async (ctx) => {
     const { keywords, anonymities, hashtags } = ctx.request.query
     const posts = await postsRepo.search({
         keywords: keywords.toLocaleString(),
