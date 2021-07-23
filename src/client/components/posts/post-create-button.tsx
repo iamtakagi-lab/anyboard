@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import { BiPaperPlane } from "react-icons/bi"
 import { useToasts } from "react-toast-notifications"
-import { useClient } from "../../hooks/backend"
+import { useBackend } from "../../hooks/backend"
 
 export const PostCreateButton: React.VFC<{}> = () => {
     const [showModal, setShowModal] = useState(false)
     const [text, setText] = useState("")
 
-    const client = useClient()
+    const client = useBackend()
     const toasts = useToasts()
 
     const create = async () => {
