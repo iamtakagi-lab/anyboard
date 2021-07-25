@@ -5,3 +5,4 @@ dist
 db.env
 web.env
 .DS_Store
+.next
