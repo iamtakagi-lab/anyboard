@@ -1,8 +1,8 @@
 module.exports = {
   purge: {
-    enabled: process.env.IS_BUILD === "yes",
+    enabled: true,
     mode: "all",
-    content: ["./src/client/**/*.ts", "./src/client/**/*.tsx", "./src/client/**/*.html"],
+    content: ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.html"],
     whitelist: ["body", "html", "svg"],
     whitelistPatterns: [],
   },

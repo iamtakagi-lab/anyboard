@@ -1,10 +1,9 @@
-import { Anonymity, Post } from '@prisma/client'
-import { PostCreateArgs, PostsSearchQuery } from 'typings/struct'
-import { anonyRepo } from "../constants"
-import { Database } from '../database'
+import { Post, PrismaClient } from '@prisma/client'
+import { PostCreateArgs, PostsSearchQuery } from '../../typings/struct'
+import { AnonymitiesRepository } from './anonymities'
 
 export class PostsRepository {
-  private db: Database
+  private db: PrismaClient
 
   constructor(db) {
     this.db = db
@@ -12,7 +11,7 @@ export class PostsRepository {
 
   async getMany(): Promise<Array<Post>> {
     return new Promise(async (resolve, reject) => {
-      resolve(await this.db.client.post.findMany({
+      resolve(await this.db.post.findMany({
         orderBy: {
           postedAt: 'desc'
         }
@@ -22,7 +21,7 @@ export class PostsRepository {
 
   async findById(id: Post['id']): Promise<Post | null> {
     return new Promise(async (resolve, reject) => {
-      const post = await this.db.client.post.findUnique({
+      const post = await this.db.post.findUnique({
         where: {
           id: id
         },
@@ -40,12 +39,13 @@ export class PostsRepository {
   }
 
   async create({ text, address }: PostCreateArgs): Promise<Post> {
+    const anonyRepo = new AnonymitiesRepository(new PrismaClient())
     return new Promise(async (resolve, reject) => {
       let anonymity = await anonyRepo.findByAddress(address)
       if (anonymity == null) {
         anonymity = await anonyRepo.create({ address })
       }
-      const post = await this.db.client.post.create({
+      const post = await this.db.post.create({
         data: {
           authorId: anonymity.id,
           text: text

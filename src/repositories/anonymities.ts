@@ -1,9 +1,8 @@
-import { Anonymity } from '@prisma/client'
-import { AnonymityCreateArgs } from 'typings/struct'
-import { Database } from '../database'
+import { Anonymity, PrismaClient } from '@prisma/client'
+import { AnonymityCreateArgs } from '../../typings/struct'
 
 export class AnonymitiesRepository {
-  private db: Database
+  private db: PrismaClient
 
   constructor(db) {
     this.db = db
@@ -11,13 +10,13 @@ export class AnonymitiesRepository {
 
   async getMany(): Promise<Array<Anonymity>> {
     return new Promise(async (resolve, reject) => {
-      resolve(await this.db.client.anonymity.findMany())
+      resolve(await this.db.anonymity.findMany())
     })
   }
 
   async findById(id: Anonymity['id']): Promise<Anonymity | null> {
     return new Promise(async (resolve, reject) => {
-      const anonymity = await this.db.client.anonymity.findUnique({
+      const anonymity = await this.db.anonymity.findUnique({
         where: {
           id: id
         },
@@ -28,7 +27,7 @@ export class AnonymitiesRepository {
 
   async findByAddress(address: Anonymity['address']): Promise<Anonymity | null> {
     return new Promise(async (resolve, reject) => {
-      const anonymity = await this.db.client.anonymity.findFirst({
+      const anonymity = await this.db.anonymity.findFirst({
         where: {
           address: address
         },
@@ -39,7 +38,7 @@ export class AnonymitiesRepository {
 
   async create({ address }: AnonymityCreateArgs): Promise<Anonymity> {
     return new Promise(async (resolve, reject) => {
-      const anonymity = await this.db.client.anonymity.create({
+      const anonymity = await this.db.anonymity.create({
         data: {
           address: address
         },
