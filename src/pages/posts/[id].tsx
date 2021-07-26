@@ -1,7 +1,7 @@
 import { Post } from '@prisma/client'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { PostPageContent } from '../../components/posts/post-page-content'
+import { PostItem } from '../../components/posts/post-item'
 import { useBackend } from '../../hooks/backend'
 import { usePostsRepo } from '../../hooks/repositories'
 
@@ -34,7 +34,7 @@ const PostsIdPage: React.VFC<{ id: string }> = ({ id }) => {
     <>
       {
         post ? (
-          <PostPageContent post={post}/>
+          <PostItem post={post}/>
         ) : null
       }
     </>

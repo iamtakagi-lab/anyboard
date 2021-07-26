@@ -27,3 +27,7 @@ ALTER TABLE "Anonymity" ADD COLUMN     "userAgents" TEXT[];
 ALTER TABLE "Post" DROP COLUMN "content",
 ADD COLUMN     "text" TEXT NOT NULL,
 ALTER COLUMN "replyTo" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Post" DROP COLUMN "replyTo",
+ADD COLUMN     "replyTo" INTEGER[];

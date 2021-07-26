@@ -7,31 +7,34 @@ import { useBackend } from "../../hooks/backend"
 export const PostCreateButton: React.VFC<{}> = () => {
     const [showModal, setShowModal] = useState(false)
     const [text, setText] = useState("")
+    const [replyTo, setReplyTo] = useState("")
 
     const client = useBackend()
     const toasts = useToasts()
 
     const create = async () => {
-        if(text.length <= 0) {
-            toasts.addToast("文字を入力してください", {
+
+        if (text.length <= 0) {
+            return toasts.addToast("文字を入力してください", {
                 appearance: "error",
                 autoDismiss: true,
             });
-            return
         }
-        if(text.length >= env.POST_TEXT_MAX_LENGTH) {
-            toasts.addToast(`文字数: ${env.POST_TEXT_MAX_LENGTH} をオーバーしています`, {
+        if (text.length >= env.POST_TEXT_MAX_LENGTH) {
+            return toasts.addToast(`文字数: ${env.POST_TEXT_MAX_LENGTH} をオーバーしています`, {
                 appearance: "error",
                 autoDismiss: true,
-            });
-            return
+            })
         }
 
         setShowModal(false)
+
         client.createPost({
-            text: text
+            text: text,
+            replyTo: replyTo.split(",").map((str) => Number(str))
         }).then((res) => {
             setText("")
+            setReplyTo("")
             location.reload()
             if (res.success) {
                 toasts.addToast("投稿しました", {
@@ -84,13 +87,22 @@ export const PostCreateButton: React.VFC<{}> = () => {
                                     {/*body*/}
                                     <div className="relative p-6 flex-auto">
                                         <p className="text-black my-4 text-lg leading-relaxed">
-                                            なんか書き込んでみましょう 文字数: {text.length} / {env.POST_TEXT_MAX_LENGTH}
+                                            返信先 (複数レスはカンマで区切る)
+                                        </p>
+                                        <input
+                                            className="form-input mt-1 block w-full border-solid border-2 rounded-md"
+                                            value={replyTo}
+                                            onChange={(event) => setReplyTo(event.target.value)}
+                                        />
+                                        <p className="text-black my-4 text-lg leading-relaxed">
+                                            書き込んでみましょう (文字数: {text.length} / {env.POST_TEXT_MAX_LENGTH})
                                         </p>
                                         <textarea
                                             className="form-input mt-1 block w-full border-solid border-2 rounded-md"
                                             value={text}
                                             onChange={(event) => setText(event.target.value)}
                                         />
+
                                     </div>
 
                                     {/*footer*/}

@@ -6,6 +6,7 @@ export type AnonymityCreateArgs = {
 
 export type PostCreateRequest = {
   text: Post['text']
+  replyTo: Post['replyTo']
 }
 
 export type PostCreateResponse = {
@@ -15,10 +16,11 @@ export type PostCreateResponse = {
 export type PostCreateArgs = {
   address: Anonymity['address']
   text: Post['text']
+  replyTo: Post['replyTo']
 }
 
 export type PostsSearchQuery = {
-  keywords?: string
-  anonymities?: string
-  hashtags?: string
+  keywords?: string[]
+  anonymities?: number[]
+  hashtags?: string[]
 }

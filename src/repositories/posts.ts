@@ -30,15 +30,7 @@ export class PostsRepository {
     })
   }
 
-  async search({ keywords, anonymities, hashtags }: PostsSearchQuery): Promise<Array<Post> | null> {
-    return new Promise(async (resolve, reject) => {
-      const posts = await this.getMany()
-      const searchPosts = posts.filter(v => v.text.includes(keywords)).filter(v => v.text.includes(hashtags)).filter(v => v.authorId.toLocaleString().includes(anonymities));
-      resolve(searchPosts)
-    })
-  }
-
-  async create({ text, address }: PostCreateArgs): Promise<Post> {
+  async create({ address, text, replyTo }: PostCreateArgs): Promise<Post> {
     const anonyRepo = new AnonymitiesRepository(new PrismaClient())
     return new Promise(async (resolve, reject) => {
       let anonymity = await anonyRepo.findByAddress(address)
@@ -48,7 +40,8 @@ export class PostsRepository {
       const post = await this.db.post.create({
         data: {
           authorId: anonymity.id,
-          text: text
+          text: text,
+          replyTo: replyTo
         },
       })
       resolve(post)

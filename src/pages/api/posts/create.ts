@@ -7,7 +7,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         getIp().then((ip) => {
             usePostsRepo().create({
                 address: ip,
-                text: req.body.text
+                text: req.body.text,
+                replyTo: req.body.replyTo
             }).then(() => {
                 res.json({ success: true })
             })

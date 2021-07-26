@@ -4,16 +4,26 @@ import Link from 'next/link'
 
 export const PostItem: React.VFC<{ post: Post }> = ({ post }) => (
   <>
-    <div className="m-5 border-b">
-
+   
       <Link href={`/posts/${post.id}`}>
         <p className="hover:text-gray-300 cursor-pointer">
-          ID: {post.id}
+          Post ID: {post.id}
         </p>
       </Link>
-      <p>{post.authorId} さん</p>
+      <p>書き込んだ人: {post.authorId}さん</p>
+      <p>
+        {post.replyTo.length > 0 ? (
+            post.replyTo.map((id) => {
+                return (
+                    <Link href={`/posts/${id}`}>
+                        <p className="hover:text-gray-300 cursor-pointer mr-2 inline">
+                        ＞＞{id}
+                        </p>
+                    </Link>
+                )
+            })
+        ) : null}への返信</p>
       <p>{post.text}</p>
       <p>{post.postedAt}</p>
-    </div>
   </>
 )
