@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { PostsTimeline } from '../../components/posts/posts-timeline'
 import { useBackend } from '../../hooks/backend'
 
-export const getStaticProps = async ({ params: { keywords, anonymities, hashtags } }) => {
+export const getStaticProps = async ({ query: { keywords, anonymities, hashtags } }) => {
   return {
     props: {
       keywords, anonymities, hashtags
