@@ -1,5 +1,5 @@
-import publicIp from 'public-ip'
+import { NextApiRequest } from 'next'
 
-export default async () => {
-    return await publicIp.v4()
+export default async (req: NextApiRequest) => {
+    return req.headers['X-Real-IP'].toString()
 }

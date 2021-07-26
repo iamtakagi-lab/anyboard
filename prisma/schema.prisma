@@ -10,8 +10,8 @@ generator client {
 model Anonymity {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  address   String
-  userAgents String[]
+  ipAddress   String
+  userAgent String
 }
 
 model Post {

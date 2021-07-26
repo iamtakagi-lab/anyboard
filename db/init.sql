@@ -31,3 +31,9 @@ ALTER COLUMN "replyTo" DROP NOT NULL;
 -- AlterTable
 ALTER TABLE "Post" DROP COLUMN "replyTo",
 ADD COLUMN     "replyTo" INTEGER[];
+
+-- AlterTable
+ALTER TABLE "Anonymity" DROP COLUMN "address",
+DROP COLUMN "userAgents",
+ADD COLUMN     "ipAddress" TEXT NOT NULL,
+ADD COLUMN     "userAgent" TEXT NOT NULL;

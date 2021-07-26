@@ -30,12 +30,14 @@ export class PostsRepository {
     })
   }
 
-  async create({ address, text, replyTo }: PostCreateArgs): Promise<Post> {
+  async create({ ipAddress, userAgent, text, replyTo }: PostCreateArgs): Promise<Post> {
     const anonyRepo = new AnonymitiesRepository(new PrismaClient())
     return new Promise(async (resolve, reject) => {
-      let anonymity = await anonyRepo.findByAddress(address)
+      let anonymity = await anonyRepo.findByAddress(ipAddress)
       if (anonymity == null) {
-        anonymity = await anonyRepo.create({ address })
+        anonymity = await anonyRepo.create({ ipAddress, userAgent })
+      } else {
+        await anonyRepo.update({id: anonymity.id, ipAddress, userAgent})
       }
       const post = await this.db.post.create({
         data: {

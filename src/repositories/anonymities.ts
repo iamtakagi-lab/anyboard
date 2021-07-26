@@ -1,5 +1,5 @@
 import { Anonymity, PrismaClient } from '@prisma/client'
-import { AnonymityCreateArgs } from '../../typings/struct'
+import { AnonymitUpdateArgs, AnonymityCreateArgs } from '../../typings/struct'
 
 export class AnonymitiesRepository {
   private db: PrismaClient
@@ -25,25 +25,46 @@ export class AnonymitiesRepository {
     })
   }
 
-  async findByAddress(address: Anonymity['address']): Promise<Anonymity | null> {
+  async findByAddress(ipAddress: Anonymity['ipAddress']): Promise<Anonymity | null> {
     return new Promise(async (resolve, reject) => {
       const anonymity = await this.db.anonymity.findFirst({
         where: {
-          address: address
+          ipAddress: ipAddress
         },
       })
       resolve(anonymity)
     })
   }
 
-  async create({ address }: AnonymityCreateArgs): Promise<Anonymity> {
+  async create({ ipAddress, userAgent }: AnonymityCreateArgs): Promise<Anonymity> {
     return new Promise(async (resolve, reject) => {
       const anonymity = await this.db.anonymity.create({
         data: {
-          address: address
+          ipAddress: ipAddress,
+          userAgent: userAgent
         },
       })
       resolve(anonymity)
+    })
+  }
+
+  async update({ id, ipAddress, userAgent }: AnonymitUpdateArgs): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      const find = await this.findById(id)
+      if (find != null) {
+        const anonymity = await this.db.anonymity.update({
+          where: {
+            id: id
+          },
+          data: {
+            ipAddress: ipAddress,
+            userAgent: userAgent
+          },
+        })
+        resolve(anonymity ? true : false)
+      } else {
+        resolve(false)
+      }
     })
   }
 }

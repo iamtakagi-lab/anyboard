@@ -1,7 +1,14 @@
 import { Anonymity, Post } from '@prisma/client'
 
 export type AnonymityCreateArgs = {
-  address: Anonymity['address']
+  ipAddress: Anonymity['ipAddress']
+  userAgent: Anonymity['userAgent']
+}
+
+export type AnonymitUpdateArgs = {
+  id: Anonymity['id']
+  ipAddress: Anonymity['ipAddress']
+  userAgent: Anonymity['userAgent']
 }
 
 export type PostCreateRequest = {
@@ -14,7 +21,8 @@ export type PostCreateResponse = {
 }
 
 export type PostCreateArgs = {
-  address: Anonymity['address']
+  ipAddress: Anonymity['ipAddress']
+  userAgent: Anonymity['userAgent']
   text: Post['text']
   replyTo: Post['replyTo']
 }
