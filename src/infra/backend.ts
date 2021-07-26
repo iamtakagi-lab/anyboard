@@ -26,7 +26,7 @@ export class Backend {
   }
 
   async getPost(id: string) {
-    const { data } = await this.client.get<Post | null>(`posts/${id}`)
+    const { data } = await this.client.get<Post | null>(`posts?id=${id}`)
     return data
   }
 

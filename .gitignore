@@ -6,3 +6,4 @@ db.env
 web.env
 .DS_Store
 .next
+yarn-error.log

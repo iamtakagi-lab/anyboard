@@ -2,7 +2,7 @@ module.exports = {
   purge: {
     enabled: true,
     mode: "all",
-    content: ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.html"],
+    content: ["./src/**/*.ts", "./src/**/*.tsx"],
     whitelist: ["body", "html", "svg"],
     whitelistPatterns: [],
   },
@@ -38,8 +38,6 @@ module.exports = {
   variants: {
     backgroundColor: ['dark', 'responsive', 'hover', 'focus'],
     borderColor: [
-      'dark',
-      'dark-focus-within',
       'responsive',
       'hover',
       'focus',
@@ -50,7 +48,7 @@ module.exports = {
   },
   corePlugins: {},
   plugins: [
-    require('tailwindcss-dark-mode')(),
+
     require('@tailwindcss/custom-forms'),
   ],
 }

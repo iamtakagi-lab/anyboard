@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { PostsTimeline } from '../../components/posts/posts-timeline'
 import { useBackend } from '../../hooks/backend'
 
-export const PostsPage: React.VFC<{}> = () => {
+const PostsPage: React.VFC<{}> = () => {
   const backend = useBackend()
   const [posts, setPosts] = useState<Array<Post>>()
 
@@ -28,3 +28,5 @@ export const PostsPage: React.VFC<{}> = () => {
     </>
   )
 }
+
+export default PostsPage

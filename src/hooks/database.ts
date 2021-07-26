@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 
+let prisma 
+
 export const useDatabase = () => {
-  return new PrismaClient()
+  return prisma == null ? prisma = new PrismaClient() : prisma 
 }

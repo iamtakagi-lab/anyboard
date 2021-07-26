@@ -6,6 +6,15 @@ import { useState } from 'react'
 import { PostsTimeline } from '../../components/posts/posts-timeline'
 import { useBackend } from '../../hooks/backend'
 
+export const getStaticProps = async ({ params: { keywords, anonymities, hashtags } }) => {
+  return {
+    props: {
+      keywords, anonymities, hashtags
+    }
+  }
+}
+
+
 export const PostsSearchQueryPage: React.VFC<{ keywords: string, anonymities: string, hashtags: string}> = ({ keywords, anonymities, hashtags }) => {
 
   const [posts, setPosts] = useState<Array<Post>>()
