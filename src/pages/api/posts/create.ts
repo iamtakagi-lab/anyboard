@@ -8,9 +8,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         Promise.all([
             getIp(req),
             getUserAgent(req)
-        ]).then(([ip, userAgent]) => {
+        ]).then(([ipAddress, userAgent]) => {
             usePostsRepo().create({
-                ipAddress: ip,
+                ipAddress: ipAddress.toString(),
                 userAgent: userAgent,
                 text: req.body.text,
                 replyTo: req.body.replyTo
