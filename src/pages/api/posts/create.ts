@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { useAnonymitiesRepo, usePostsRepo } from "../../../hooks/repositories"
 import getIp from "../../../utils/getIp"
 import getUserAgent from '../../../utils/getUserAgent'
+import sendDiscord from '../../../utils/sendDiscord'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
@@ -14,9 +15,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 userAgent: userAgent,
                 text: req.body.text,
                 replyTo: req.body.replyTo
-            }).then(async() => {
-                console.log(await useAnonymitiesRepo().getMany())
-                res.json({ success: true })
+            }).then(async (post) => {
+                sendDiscord(post).then(() => {
+                    res.json({ success: true })
+                })
             })
         })
     }
