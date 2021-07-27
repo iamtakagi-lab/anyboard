@@ -17,12 +17,12 @@ export const PostItem: React.VFC<{ post: Post }> = ({ post }) => (
                 return (
                     <Link href={`/posts/${id}`}>
                         <p className="hover:text-gray-300 cursor-pointer mr-2 inline">
-                        ＞＞{id}
+                        {'>>' + id}
                         </p>
                     </Link>
                 )
             })
-        ) : null}への返信</p>
+        ) + ' への返信': null}</p>
       <p>{post.text}</p>
       <p>{post.postedAt}</p>
   </>
