@@ -1,6 +1,6 @@
 import { Post } from "@prisma/client";
 import { MessageEmbed, WebhookClient } from "discord.js";
-import { resolve } from "path/posix";
+
 import env from "../common/env";
 
 export default async (post: Post) => {
