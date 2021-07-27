@@ -7,11 +7,5 @@ services:
     build: .
     volumes: 
       - ./db/:/app/db
-    environment: 
-      NODE_ENV: production
-      HOST: 0.0.0.0
-      PORT: 3000
-      API_BASE_URL: https://anyboard.iamtakagi.net/api/
-      POST_TEXT_MAX_LENGTH: 500
     ports: 
       - 3000:3000
