@@ -9,7 +9,7 @@ export class Backend {
   public baseUrl: string
 
   constructor() {
-    this.baseUrl = env.BASE_URL
+    this.baseUrl = env.API_BASE_URL
   }
 
   get client() {
