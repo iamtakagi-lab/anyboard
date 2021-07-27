@@ -1,0 +1,16 @@
+-- CreateTable
+CREATE TABLE "Anonymity" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "ipAddress" TEXT NOT NULL,
+    "userAgent" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Post" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "postedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "text" TEXT NOT NULL,
+    "authorId" INTEGER NOT NULL,
+    "replyTo" TEXT NOT NULL
+);

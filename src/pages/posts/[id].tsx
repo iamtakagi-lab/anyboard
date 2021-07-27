@@ -16,7 +16,7 @@ export const getStaticProps = async ({ params: { id } }) => {
 export const getStaticPaths = async () => {
   const posts = await usePostsRepo().getMany()
   const paths = posts.map(post => `/posts/${post.id.toString()}`)
-  return { paths, fallback: true }
+  return { paths, fallback: false }
 }
 
 const PostsIdPage: React.VFC<{ id: string }> = ({ id }) => {

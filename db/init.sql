@@ -2,7 +2,8 @@
 CREATE TABLE "Anonymity" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "address" TEXT NOT NULL,
+    "ipAddress" TEXT NOT NULL,
+    "userAgent" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );
@@ -11,29 +12,9 @@ CREATE TABLE "Anonymity" (
 CREATE TABLE "Post" (
     "id" SERIAL NOT NULL,
     "postedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "content" TEXT NOT NULL,
+    "text" TEXT NOT NULL,
     "authorId" INTEGER NOT NULL,
+    "replyTo" INTEGER[],
 
     PRIMARY KEY ("id")
 );
-
--- AlterTable
-ALTER TABLE "Post" ADD COLUMN     "replyTo" INTEGER NOT NULL;
-
--- AlterTable
-ALTER TABLE "Anonymity" ADD COLUMN     "userAgents" TEXT[];
-
--- AlterTable
-ALTER TABLE "Post" DROP COLUMN "content",
-ADD COLUMN     "text" TEXT NOT NULL,
-ALTER COLUMN "replyTo" DROP NOT NULL;
-
--- AlterTable
-ALTER TABLE "Post" DROP COLUMN "replyTo",
-ADD COLUMN     "replyTo" INTEGER[];
-
--- AlterTable
-ALTER TABLE "Anonymity" DROP COLUMN "address",
-DROP COLUMN "userAgents",
-ADD COLUMN     "ipAddress" TEXT NOT NULL,
-ADD COLUMN     "userAgent" TEXT NOT NULL;

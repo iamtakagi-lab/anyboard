@@ -1,5 +1,5 @@
 import { NextApiRequest } from 'next'
 
 export default async (req: NextApiRequest) => {
-    return req.headers['X-Real-IP'].toString()
+    return req.connection.remoteAddress
 }
