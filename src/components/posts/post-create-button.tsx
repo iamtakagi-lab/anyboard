@@ -31,7 +31,7 @@ export const PostCreateButton: React.VFC<{}> = () => {
 
         client.createPost({
             text: text,
-            replyTo: replyTo.split(",").map((str) => Number(str))
+            replyTo: replyTo.trim()
         }).then((res) => {
             setText("")
             setReplyTo("")

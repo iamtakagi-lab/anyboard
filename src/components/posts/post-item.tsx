@@ -13,7 +13,7 @@ export const PostItem: React.VFC<{ post: Post }> = ({ post }) => (
       <p>書き込んだ人: {post.authorId}さん</p>
       <p>
         {post.replyTo.length > 0 ? (
-            post.replyTo.map((id) => {
+            post.replyTo.split(',').map((id) => {
                 return (
                     <Link href={`/posts/${id}`}>
                         <p className="hover:text-gray-300 cursor-pointer mr-2 inline">

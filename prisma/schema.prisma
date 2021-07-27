@@ -1,6 +1,6 @@
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:../db/sqlite.db"
 }
 
 generator client {
@@ -19,5 +19,5 @@ model Post {
   postedAt DateTime @default(now())
   text  String
   authorId Int
-  replyTo Int[]
+  replyTo String
 }
