@@ -7,3 +7,4 @@ web.env
 .DS_Store
 .next
 yarn-error.log
+out
