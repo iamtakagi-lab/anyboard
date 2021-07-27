@@ -5,6 +5,10 @@ services:
     container_name: web
     restart: always
     build: .
+    environment: 
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3000
     volumes: 
       - ./db/:/app/db
     ports: 
