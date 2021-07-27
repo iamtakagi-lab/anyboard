@@ -12,7 +12,7 @@ export const Header: React.VFC<{}> = () => (
       </Link>
       <p className="hover:text-gray-300">
         <Link href="/posts"> 
-        <p className="flex items-center justify-start my-1 cursor-pointer"> 投稿を見る 
+        <p className="flex items-center justify-start my-1 cursor-pointer">投稿を見る 
         </p> 
         </Link>
       </p>
