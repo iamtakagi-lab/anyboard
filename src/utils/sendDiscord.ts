@@ -13,7 +13,7 @@ export default async (post: Post) => {
         if (replies.length > 0) {
             let rep = ""
             replies.map((id) => {
-                rep += "[>>" + id + "](" + env.BASE_URL + "/posts/" + id + ")"
+                rep += "[>>" + id + "](" + env.BASE_URL + "/posts/" + id + ") "
             })
             embed.addField("返信先", rep, false)
         }
