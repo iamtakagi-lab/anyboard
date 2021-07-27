@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import env from '../../../common/env'
 import { useAnonymitiesRepo, usePostsRepo } from "../../../hooks/repositories"
 import getIp from "../../../utils/getIp"
 import getUserAgent from '../../../utils/getUserAgent'

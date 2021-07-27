@@ -9,6 +9,7 @@ export default async (post: Post) => {
         const webhook = new WebhookClient(splitUrl[5], splitUrl[6])
         const embed = new MessageEmbed()
         embed.setTitle("[" + post.authorId + "さんが書き込みました](" + env.BASE_URL + "/posts/" + post.id)
+        embed.setColor("#7CFC00")
         const replies = post.replyTo.split(",")
         if (replies.length > 0) {
             let rep = ""
@@ -19,5 +20,6 @@ export default async (post: Post) => {
         }
         embed.addField("内容", post.text, false)
         return await webhook.send(embed)
+
     }
 }
