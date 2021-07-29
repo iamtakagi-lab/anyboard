@@ -8,11 +8,12 @@ export default async (post: Post) => {
         const splitUrl = env.DISCORD_WEBHOOK_URL.split('/')
         const webhook = new WebhookClient(splitUrl[5], splitUrl[6])
         const embed = new MessageEmbed()
-        embed.setTitle("[" + post.authorId + "さんが書き込みました](" + env.BASE_URL + "/posts/" + post.id)
+        embed.setTitle(post.authorId + "さんが書き込みました")
         embed.setColor("#7CFC00")
-        const replies = post.replyTo.split(",")
-        if (replies.length > 0) {
+        embed.addField("ページリンク", env.BASE_URL + "posts/" + post.id, false)
+        if (post.replyTo.length > 0) {
             let rep = ""
+            const replies = post.replyTo.split(",")
             replies.map((id) => {
                 rep += "[>>" + id + "](" + env.BASE_URL + "/posts/" + id + ") "
             })
@@ -20,6 +21,5 @@ export default async (post: Post) => {
         }
         embed.addField("内容", post.text, false)
         return await webhook.send(embed)
-
     }
 }
