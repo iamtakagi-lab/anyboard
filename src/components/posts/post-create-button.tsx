@@ -20,7 +20,7 @@ export const PostCreateButton: React.VFC<{}> = () => {
                 autoDismiss: true,
             });
         }
-        if (text.length >= env.POST_TEXT_MAX_LENGTH) {
+        if (text.length > env.POST_TEXT_MAX_LENGTH) {
             return toasts.addToast(`文字数: ${env.POST_TEXT_MAX_LENGTH} をオーバーしています`, {
                 appearance: "error",
                 autoDismiss: true,
