@@ -10,12 +10,12 @@ export default async (post: Post) => {
         const embed = new MessageEmbed()
         embed.setTitle(post.authorId + "さんが書き込みました")
         embed.setColor("#7CFC00")
-        embed.addField("ページリンク", env.BASE_URL + "posts/" + post.id, false)
+        embed.addField("ページリンク", env.BASE_URL + "/posts/" + post.id, false)
         if (post.replyTo.length > 0) {
             let rep = ""
             const replies = post.replyTo.split(",")
             replies.map((id) => {
-                rep += "[>>" + id + "](" + env.BASE_URL + "posts/" + id + ") "
+                rep += "[>>" + id + "](" + env.BASE_URL + "/posts/" + id + ") "
             })
             embed.addField("返信先", rep, false)
         }
