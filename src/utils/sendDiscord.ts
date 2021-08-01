@@ -15,7 +15,7 @@ export default async (post: Post) => {
             let rep = ""
             const replies = post.replyTo.split(",")
             replies.map((id) => {
-                rep += "[>>" + id + "](" + env.BASE_URL + "/posts/" + id + ") "
+                rep += "[>>" + id + "](" + env.BASE_URL + "posts/" + id + ") "
             })
             embed.addField("返信先", rep, false)
         }
