@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start -p $PORT",
-    "rettier": "yarn lint:prettier --write",
+    "prettier": "yarn lint:prettier --write",
     "prisma:generate": "npx prisma generate",
     "prisma:migrate": "npx prisma migrate dev --name init"
   },
