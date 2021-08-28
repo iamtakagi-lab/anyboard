@@ -13,7 +13,7 @@ const PostsIdPage: React.VFC<{}> = ({}) => {
   const backend = useBackend()
 
   useEffect(() => {
-    backend.getPost(id).then((data) => {
+    backend.getPost(id.toString()).then((data) => {
       setPost(data)
     })
   }, [])
