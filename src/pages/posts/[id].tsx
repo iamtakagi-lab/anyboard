@@ -3,15 +3,12 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { PostItem } from '../../components/posts/post-item'
 import { useBackend } from '../../hooks/backend'
+import { useRouter } from 'next/router'
 
-export const getInitialProps = async ({query}) => {
-  const { id } = query
-  return {
-    id
-  }
-}
-
-const PostsIdPage: React.VFC<{id}> = ({id}) => {
+const PostsIdPage: React.VFC<{}> = ({}) => {
+  const router = useRouter()
+  const { id } = router.query
+  
   const [post, setPost] = useState<Post | null>()
   const backend = useBackend()
 
